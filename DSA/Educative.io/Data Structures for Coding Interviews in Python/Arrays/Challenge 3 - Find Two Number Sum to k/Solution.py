@@ -11,4 +11,4 @@ def find_sum(lst, k):
         if num in dict:
             return [num, k-num]
         dict.add(k-num)
-    return False
+    return None

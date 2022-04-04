@@ -27,6 +27,6 @@ def find_product(arr):
     for i in range(len(arr)):
         ans[i] *= pre               # prefix product from one end
         pre *= arr[i]
-    ans[-1-i] *= suf            # suffix product from other end
-    suf *= arr[-1-i]
+        ans[~i] *= suf            # suffix product from other end
+        suf *= arr[~i]
     return ans

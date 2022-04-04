@@ -6,7 +6,7 @@ Space Complexity : O(1)
 
 def find_minimum(lst):
     if len(lst) == 0 or lst is []:
-        return -1
+        return None
 
     min = lst[0]
 
