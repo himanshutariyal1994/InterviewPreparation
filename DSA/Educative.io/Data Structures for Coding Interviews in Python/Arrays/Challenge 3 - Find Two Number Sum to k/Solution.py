@@ -1,3 +1,9 @@
+'''
+Time Complexity: O(N)
+Space Complexity: O(N)
+'''
+
+
 def find_sum(lst, k):
     dict = set()
 

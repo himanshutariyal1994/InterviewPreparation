@@ -33,6 +33,18 @@ print(another_list[3])  # 'yet another list'
 another_list[2]()  # 'Hello from foo()!'
 ```
 
+## List comprehension
+
+A Python technique called list comprehension is used to iterate over the initial array. With list comprehension, checking a condition and appending to the new list can all be done in one line. The code for it starts and ends with a ‘[’ and ends with a ‘]’. The basic syntax is:
+
+```python
+newList = [expression(i) for i in oldList if filter(i)]
+
+lst = [1,2,3,4,5]
+new_lst = [num**num for num in lst]
+print(new_lst)
+```
+
 ## Important list functions
 
 ### append() method
