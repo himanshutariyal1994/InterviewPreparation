@@ -8,6 +8,9 @@ The most primitive form of the linked list data structure is the singly linked l
 
 Each node holds data along with a forward pointer to the next node in the list. The absence of a backwards pointer implies that there is a uni-directional link, i.e., the whole list points in one direction and cannot point backwards. This is why it is called a `singly linked list.`
 
+<br />
+<br />
+
 # Classes needed to implement linked lists
 
 For now, we only need to concern yourself with the two classes needed to implement a singly linked list:
@@ -54,6 +57,9 @@ class LinkedList:
 
 > Explanation: The implementation is fairly simple. When the list is first initialized it has no nodes, so the **head** is set to `None`.
 
+<br />
+<br />
+
 # Linked lists vs Lists
 
 The main difference between lists and linked lists is in the way elements are inserted and deleted. Lists are arranged contiguously in the memory, while nodes of a linked list may be dispersed in the memory.
@@ -78,6 +84,9 @@ The **access** operation in lists, as we talked about earlier, is much faster `(
 
 > Note:\*\* Deletion at tail for arrays like data structures is in O(n), but in python, the `pop` method for lists is able to do it in O(1).
 
+<br />
+<br />
+
 # Basic Linked List Operations
 
 The primary operations which are generally a part of the `LinkedList` class are listed below:
@@ -92,6 +101,8 @@ The primary operations which are generally a part of the `LinkedList` class are 
 - `search(data)` - searches for an element with the specified value in the linked list
 
 > If you observe the list of functions mentioned above, `get_head()` and `is_empty()` are helper functions that will prove useful in all the others.
+
+<br />
 
 ## get_head() method
 
@@ -116,6 +127,8 @@ print(lst.get_head())  # Returns None since headNode does not contain any data
 ```
 
 > Note: The time complexity for `get_head()` is `O(1)` as we simply return the head.
+
+<br />
 
 ## is_empty()
 
@@ -144,6 +157,8 @@ print(lst.is_empty())  # Returns True
 ```
 
 > Note: Even when a linked list is empty, the `head` must always exist. Time complexity will be in O(1) as all we need to do is check whether the `head` node points to `None` or not.
+
+<br />
 
 # Single Linked List Insertion
 
@@ -216,6 +231,8 @@ The function follows these steps to insert a new node:
 - `temp_node` will become the `next` of `head`.
 
 At every instance, we point the head to a new node. Therefore, the time complexity for insertion at head is `O(1)`.
+
+<br />
 
 # Single Linked List Deletion
 
@@ -297,3 +314,225 @@ There is nothing too complicated going on here. We access the first element of t
 If a node is found, its `next` becomes the `head`. Time complexity will be `O(1)`
 
 Now, `first_element` has been removed from the linked list and its **deletion from memory** will be handled by Python since we haven’t specified a destructor.
+
+<br />
+<br />
+
+## Summary of Single Linked List methods in a nutshell
+
+```python
+class Node:
+	def __init__(self,data):
+		self.data = data
+		self.next = None
+
+
+class LinkedList:
+	def __init__(self):
+		self.head = None
+
+
+	# Method to check whether linked list is empty
+	def is_empty(self):
+		return self.head is None
+
+
+	# Method to get the head node
+	def get_head(self):
+		return self.head
+
+
+	# Method to search an element in LL
+	def search(self,value):
+		# If LL is empty, return False
+		if self.is_empty():
+			return False
+
+		# Initialise head_node as self.head, and iterate through loop
+		# till the tail element
+		head_node = self.get_head()
+		while head_node.next is not None:
+			if head_node.data is value:
+				return True
+
+			head_node = head_node.next
+
+		# Since the entire list has been traversed, the element does not
+		# exist in the LL, so return False
+		return False
+
+
+	# Method to print all data nodes in Linked list
+	def print_linked_list_data():
+		# If LL is empty, print no nodes present
+		if self.is_empty():
+			print('Linked list is empty')
+
+		# Initialise head_node as self.head, and iterate through loop
+		# till the tail element
+		head_node = self.get_head()
+		print_str = ''
+		while head_node.next:
+				print_str += str(head_node.data) + ' --> '
+				head_node = head_node.next
+
+		print_str += str(head_node.data) + ' --> None'
+		print(print_str)
+
+	'''
+	Insertion in Linked list:
+	a. Insertion at head
+	b. Insertion at tail
+	c. Insertion at k-th index
+	'''
+
+	# Insertion at head
+	def insert_at_head(self,value):
+		# Create a new node
+		new_node = Node(value)
+
+		# Set next pointer to the head node
+		new_node.next = self.get_head()
+
+		# Reassign head to the new node to ensure that it has been
+		# the first node of the LL
+		self.head = new_node
+
+		# return the head node for traversal/printing
+		return self.head
+
+
+	# Insertion at tail
+	def insert_at_tail(self,value):
+		# Create a new node
+		new_node = Node(value)
+
+		# If LL is empty, make the new node as head node
+		if self.is_empty():
+			self.head = new_node
+			return self.head
+
+		# Initialise head_node as self.head, and iterate through loop
+		# till the tail element
+		head_node = self.get_head()
+
+		while head_node.next:
+			head_node = head_node.next
+
+		# at this moment head_node is the previous tail node, so
+		# point the next pointer of the tail to the new node
+		head_node.next = new_node
+		return self.head
+
+
+	# Insertion at k-th index
+	def insert_at_k-th_index(self,value,index):
+		# Create a new node
+		new_node = Node(value)
+
+		# If index is <0, throw error
+		if index < 0:
+			print('Illegal index')
+			return False
+
+		# If index is 0, insert node at head
+		if index == 0:
+			self.insert_at_head(value)
+			return self.head
+
+		counter = 1
+		current_node = self.get_head()
+
+		# Iterate till we encounter the tail node. If index and counter match
+		# then assign next of new_node to next of the current node, and
+		# next of the current node should be new_node
+		while current_node.next:
+			if counter == index:
+				new_node.next = current_node.next
+				current_node.next = new_node
+				return self.head
+
+			counter += 1
+			current_node = current_node.next
+
+		# Return false since the list has completed and the index is not matched
+		return False
+
+
+
+	'''
+	Deletion in Linked list:
+	a. Deletion at head
+	b. Deletion at tail
+	c. Deletion by value
+	'''
+
+	# Deletion at head
+	def delete_at_head(self):
+		# If LL is empty, throw an error
+		if self.is_empty():
+			print('Linked List is empty')
+			return False
+
+		# LL is not empty, so isolate head node from the list and assign None
+		# to the next pointer of the head node. Also, assign head to the next of the
+		# initial head none
+		head_node = self.get_head()
+		self.head = head_node.next
+		head_node.next = None
+		return self.head
+
+
+	# Deletion at tail
+	def delete_at_tail(self):
+		# If LL is empty, throw an error
+		if self.is_empty():
+			print('Linked List is empty')
+			return False
+
+		# If only 1 node is present, set head to None
+		if self.head.next is None:
+			self.head = None
+			return self.head
+
+		# LL is not empty, so iterate through LL till we get the second last node
+		head_node = self.get_head()
+		while head_node.next.next:
+			head_node = head_node.next
+
+		# This will be the second last node of the LL, this deleting the tail node
+		head_node.next = None
+		return self.head
+
+
+	# Deletion by value
+	def deletion_by_value(self,value):
+		# If LL is empty, throw an error
+		if self.is_empty():
+			print('Linked List is empty')
+			return False
+
+		# LL is not empty, so set curr_node as head and previous_node as None
+		curr_node = self.get_head()
+		prev_node = None
+
+		# If only 1 node is present and value equals data at node, set head to None
+		if curr_node.data is value:
+			self.head = curr_node.next
+			curr_node.next = None
+			return self.head
+
+		# Iterate through the list to break relnship between prev and curr node
+		while curr_node:
+			if curr_node.data is value:
+				prev_node.next = curr_node.next
+				curr_node.next = None
+				return self.head
+
+			prev_node = curr_node
+			curr_node = curr.node.next
+
+		# Return false since the list has completed and the value is not found in LL
+		return False
+
+```
