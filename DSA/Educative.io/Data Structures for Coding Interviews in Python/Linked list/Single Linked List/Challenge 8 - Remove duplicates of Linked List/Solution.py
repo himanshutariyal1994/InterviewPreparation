@@ -111,6 +111,7 @@ class LinkedList:
         while head_node and head_node.next:
             if head_node.data == head_node.next.data:
                 head_node.next = head_node.next.next
+                head_node.next.next = None
             else:
                 head_node = head_node.next
 

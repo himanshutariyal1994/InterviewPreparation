@@ -86,3 +86,14 @@ class LinkedList:
 
         if head_list2 is None:
             return self.head
+
+        result = LinkedList()
+        curr = self.head
+        while curr:
+            if head_list2.search_node(curr.data):
+                result.insert_at_head(curr.data)
+
+            curr = curr.next
+
+        self.remove_duplicates()
+        return self.head

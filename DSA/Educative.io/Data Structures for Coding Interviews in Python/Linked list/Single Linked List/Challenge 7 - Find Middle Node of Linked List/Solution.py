@@ -97,13 +97,13 @@ class LinkedList:
 
     def find_mid(self):
         if self.is_empty():
-            return False
+            return None
 
         slow_node = self.head
         if slow_node.next is None:
             return slow_node.data
 
-        fast_node = self.head
+        fast_node = slow_node
 
         while fast_node and fast_node.next:
             slow_node = slow_node.next

@@ -29,21 +29,21 @@ class LinkedList:
             return False
 
         # If head node contains the value, set self.head as None to delete the node
-        head_node = self.head
-        if head_node.data == value:
-            self.head = head_node.next
-            head_node.next = None
+        curr = self.head
+        if curr.next is None and curr.data == value:
+            self.head = curr.next
+            curr.next = None
             return True
 
         previous_node = None
-        while head_node is not None:
-            if head_node.data == value:
-                previous_node.next = head_node.next
-                head_node.next = None
+        while curr:
+            if curr.data == value:
+                previous_node.next = curr.next
+                curr.next = None
                 return True
 
-            previous_node = head_node
-            head_node = head_node.next
+            previous_node = curr
+            curr = curr.next
 
         # Since we were not able to find the value after traversing, return False
         return False
