@@ -19,7 +19,7 @@ Despite the simple implementation stacks can be used to solve very **complex** p
 
 ## How do Stacks work?
 
-**Stacks** can be implemented in many ways, but a typical Stack must offer the following functionalities:
+**Stacks** can be implemented in many ways, but a typical `Stack` must offer the following functionalities:
 
 | Function        | What does it do?                               |
 | --------------- | ---------------------------------------------- |
@@ -36,6 +36,8 @@ Despite the simple implementation stacks can be used to solve very **complex** p
 > In **Python**, you can use the pre-built `Stack` class by importing them into your program. However, implementing a `Stack` from scratch will allow us to truly master the ins and outs of the data structure.
 
 > Stacks can be implemented using `Lists` or `Linked Lists` in Python. Each implementation has its own advantages and disadvantages. Here, however, we will show an implementation of stacks using `normal lists`.
+
+### Implementing Stack using lists
 
 ```python
 ## Implementing a Custom Stack class using lists
@@ -85,8 +87,7 @@ print(f'Element popped from stack: {stack_inst.pop()}')
 print(f'Element popped from stack: {stack_inst.pop()}')
 print(f'Top element in stack now: {stack_inst.peek()}')
 print(f'Size of stack now: {stack_inst.size()}')
-
-
+print(f'Stack empty: {stack_inst.is_empty()}')
 ```
 
 > The simple `Stack` class called `StackList` will consist of the member functions given above and a list called `list` that will hold all the elements of the stack.
@@ -103,7 +104,67 @@ print(f'Size of stack now: {stack_inst.size()}')
 
 <br/>
 
+### Implementing Stack using deque (Double Ended Queue)
+
+> Here, however, we will show an implementation of stacks using `deque` or `doubled ended queue` present in the `collections` module in Python.
+
+```python
+# Implementing Stack using deque()
+# For more methods refer to: https://www.geeksforgeeks.org/deque-in-python/
+
+from collections import deque
+stack = deque(
+    [], maxlen=100)  # maxlen indicates the max elements that could be inserted in deque
+
+# Pushing elements on stack on the rear end
+# Time complexity : O(1)
+stack.append(1)
+stack.append(2)
+stack.append(3)
+stack.append(4)
+
+# Pushing elements on the front end
+# Time complexity : O(1)
+stack.appendleft(0)
+stack.appendleft(-1)
+stack.appendleft(-2)
+
+# Extending elements on the left end
+stack.extendleft([-3, -4])
+stack.extendleft([-5, -6])
+stack.extendleft([-7, -8])
+
+# Extending elements on the right end
+stack.extend([5, 6, 7, 8])
+stack.extend([9, 10])
+
+# Printing stack values
+print(stack)
+
+# Removing elements from the rear end in stack
+# Time complexity : O(1)
+print(stack.pop())  # 10
+print(stack.pop())  # 9
+print(stack.pop())  # 8
+
+# Removing elements from the left end in stack
+# Time complexity : O(1)
+print(stack.popleft())  # -8
+print(stack.popleft())  # -7
+print(stack.popleft())  # -6
+
+# Print number of elements in stack
+print(len(stack))  # 13
+
+# Check if stack is empty
+print(len(stack) == 0)
+```
+
+<br/>
+
 ## Complexities of Stack Operations
+
+### Using lists
 
 | Operation       | Time Complexity |
 | --------------- | --------------- |
@@ -112,3 +173,13 @@ print(f'Size of stack now: {stack_inst.size()}')
 | `peek()`        | O(1)            |
 | `is_empty()`    | O(1)            |
 | `size()`        | O(1)            |
+
+### Using deque
+
+| Operation             | Time Complexity |
+| --------------------- | --------------- |
+| `append(element)`     | O(1)            |
+| `pop()`               | O(1)            |
+| `appendleft(element)` | O(1)            |
+| `popleft()`           | O(1)            |
+| `len()`               | O(1)            |

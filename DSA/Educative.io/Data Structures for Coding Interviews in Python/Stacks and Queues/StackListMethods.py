@@ -1,3 +1,11 @@
+'''
+Implementing Stack using a list
+'''
+
+
+from collections import deque
+
+
 class StackList:
     def __init__(self):
         self.list = []
@@ -46,3 +54,49 @@ print(f'Element popped from stack: {stack_inst.pop()}')
 print(f'Top element in stack now: {stack_inst.peek()}')
 print(f'Size of stack now: {stack_inst.size()}')
 print(f'Stack empty: {stack_inst.is_empty()}')
+
+
+'''
+Implementing Stacks using deque(). Import deque from the collections module
+'''
+stack = deque(
+    [], maxlen=100)  # maxlen indicates the max elements that could be inserted in deque
+
+# Pushing elements on stack
+stack.append(1)
+stack.append(2)
+stack.append(3)
+stack.append(4)
+
+# Pushing elements on the left end
+stack.appendleft(0)
+stack.appendleft(-1)
+stack.appendleft(-2)
+
+# Extending elements on the left end
+stack.extendleft([-3, -4])
+stack.extendleft([-5, -6])
+stack.extendleft([-7, -8])
+
+# Extending elements on the right end
+stack.extend([5, 6, 7, 8])
+stack.extend([9, 10])
+
+# Printing stack values
+print(stack)
+
+# Removing elements from stack
+print(stack.pop())  # 10
+print(stack.pop())  # 9
+print(stack.pop())  # 8
+
+# Removing elements on the left end
+print(stack.popleft())  # -8
+print(stack.popleft())  # -7
+print(stack.popleft())  # -6
+
+# Print number of elements in stack
+print(len(stack))  # 13
+
+# Check if stack is empty
+print(len(stack) == 0)
