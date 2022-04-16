@@ -3,6 +3,7 @@ Here we simply check that if the token is an operator, we will pop 2 elements fr
 stack. If it not an operator, simply push the element to the stack
 
 Time complexity : O(N) where N is the length of the string
+Space complexity: O(N) since we store stack in memory
 '''
 
 

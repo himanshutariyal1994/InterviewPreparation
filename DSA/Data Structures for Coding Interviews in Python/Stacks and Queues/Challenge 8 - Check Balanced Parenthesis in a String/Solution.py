@@ -10,6 +10,7 @@ If any of these conditions are True, we return False. If a parenthesis in the st
  is found. In the end, if stack is not empty, we return False.
 
 Time complexity : O(N) where N is the length of the string
+Space complexity: O(N) since the stack is going to be stored in memory
 '''
 
 
